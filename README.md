@@ -7,6 +7,10 @@
 This is a [Packer](https://www.packer.io) post-processor plugin to upload versioned boxes to
 [Google Compute Storage](http://cloud.google.com/storage/) (GCS).
 
+## Requirements
+* [Packer](https://www.packer.io/intro/getting-started/install.html)
+* [Go 1.13](https://golang.org/doc/install)
+
 ## Installation
 
 ### Install from release:
@@ -72,12 +76,14 @@ end
 ## Authentication
 
 Authenticating with Google Cloud services requires at most one JSON file.
-Vagrant will look for credentials in the following places, preferring the first location found:
+Packer will look for credentials in the following places, preferring the first location found:
 
-1.  A JSON file (Service Account) whose path is specified by the
+1.  An `account_file` option in your packer file.
+
+2.  A JSON file (Service Account) whose path is specified by the
     `GOOGLE_APPLICATION_CREDENTIALS` environment variable.
 
-2.  A JSON file in a location known to the `gcloud` command-line tool.
+3.  A JSON file in a location known to the `gcloud` command-line tool.
     (`gcloud auth application-default login` creates it)
 
     On Windows, this is:
@@ -88,7 +94,7 @@ Vagrant will look for credentials in the following places, preferring the first 
 
         $HOME/.config/gcloud/application_default_credentials.json
 
-3.  On Google Compute Engine and Google App Engine Managed VMs, it fetches
+4.  On Google Compute Engine and Google App Engine Managed VMs, it fetches
     credentials from the metadata server. (Needs a correct VM authentication
     scope configuration)
 
