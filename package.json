@@ -1,0 +1,45 @@
+{
+  "name": "packer-vagrant-box-gcs",
+  "version": "0.0.0-dev",
+  "description": "Packer plugin to upload Vagrant boxes to Google GCS.",
+  "author": "Arnaud Dezandee <dezandee.arnaud@gmail.com> (https://github.com/arnaud-dezandee)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arnaud-dezandee/packer-vagrant-box-gcs.git"
+  },
+  "devDependencies": {
+    "execa": "4.0.2",
+    "semantic-release": "17.0.8"
+  },
+  "release": {
+    "branches": [
+      "master"
+    ],
+    "tagFormat": "${version}",
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "./tools/go.js",
+        {
+          "binary": "packer-post-processor-vagrant-box-gcs",
+          "arch": [
+            "amd64"
+          ],
+          "os": [
+            "darwin",
+            "linux",
+            "windows"
+          ]
+        }
+      ],
+      [
+        "@semantic-release/github",
+        {
+          "assets": "packer-vagrant-box-gcs_*.zip"
+        }
+      ]
+    ]
+  }
+}
