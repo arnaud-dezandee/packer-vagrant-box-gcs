@@ -24,7 +24,12 @@ This is a [Packer](https://www.packer.io) post-processor plugin to upload versio
 Clone repository and build
 
 ```sh
-$ go get github.com/arnaud-dezandee/packer-vagrant-box-gcs
+$ mkdir -p $GOPATH/src/github.com/arnaud-dezandee; cd $GOPATH/src/github.com/arnaud-dezandee
+$ git clone git@github.com:arnaud-dezandee/packer-vagrant-box-gcs.git
+```
+```sh
+$ cd $GOPATH/src/github.com/arnaud-dezandee/packer-vagrant-box-gcs
+$ go install
 ```
 
 Link the build to Packer
